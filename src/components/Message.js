@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { forwardRef } from "react";
 import { Card, CardContent, Typography } from "@material-ui/core";
 import styled from "styled-components";
 
-const Message = ({ account, data }) => {
+const Message = forwardRef(({ account, data }, ref) => {
   const StyledCard = styled(Card)`
     margin: 16px;
     padding: 8px;
@@ -24,17 +24,18 @@ const Message = ({ account, data }) => {
 
   return (
     <StyledCard
+      ref={ref}
       className={`message__card ${
         isOwner ? "message__ownerCard" : "message__guestCard"
       }`}
     >
       <CardContent>
         <Typography variant="h5" component="h2">
-          {data.user}: {data.content}
+          {data.user}: {data.text}
         </Typography>
       </CardContent>
     </StyledCard>
   );
-};
+});
 
 export default Message;

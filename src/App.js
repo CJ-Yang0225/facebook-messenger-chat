@@ -4,6 +4,7 @@ import "./App.css";
 import Message from "./components/Message";
 import db from "./firebase";
 import firebase from "firebase";
+import FlipMove from "react-flip-move";
 
 function App() {
   const [input, setInput] = useState("");
@@ -13,9 +14,14 @@ function App() {
   useEffect(() => {
     // 監聽 Cloud Firestore 獲取實時更新 (documents)
     db.collection("messages")
-      .orderBy("timestamp", 'desc')
+      .orderBy("timestamp", "desc")
       .onSnapshot((snapshot) => {
-        setMessages(snapshot.docs.map((doc) => doc.data()));
+        setMessages(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            data: doc.data(),
+          }))
+        );
       });
   }, []);
 
@@ -28,7 +34,7 @@ function App() {
     e.preventDefault();
     db.collection("messages").add({
       user: username,
-      content: input,
+      text: input,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
     setInput("");
@@ -56,9 +62,11 @@ function App() {
           </Button>
         </FormControl>
       </form>
-      {messages.map((message, id) => (
-        <Message account={username} data={message} key={id} />
-      ))}
+      <FlipMove>
+        {messages.map(({ data, id }) => (
+          <Message account={username} data={data} key={id} />
+        ))}
+      </FlipMove>
     </div>
   );
 }
