@@ -2,13 +2,22 @@ import React, { useState, useEffect } from "react";
 import { Button, FormControl, Input, InputLabel } from "@material-ui/core";
 import "./App.css";
 import Message from "./components/Message";
+import db from "./firebase";
+import firebase from "firebase";
 
 function App() {
   const [input, setInput] = useState("");
-  const [messages, setMessages] = useState([
-    { user: "Anonymous", content: "who i am?" },
-  ]);
+  const [messages, setMessages] = useState([]);
   const [username, setUsername] = useState("Anonymous");
+
+  useEffect(() => {
+    // 監聽 Cloud Firestore 獲取實時更新 (documents)
+    db.collection("messages")
+      .orderBy("timestamp", 'desc')
+      .onSnapshot((snapshot) => {
+        setMessages(snapshot.docs.map((doc) => doc.data()));
+      });
+  }, []);
 
   useEffect(() => {
     const name = prompt("Please enter your name");
@@ -17,7 +26,11 @@ function App() {
 
   const sendMessage = (e) => {
     e.preventDefault();
-    setMessages([...messages, { user: username, content: input }]);
+    db.collection("messages").add({
+      user: username,
+      content: input,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    });
     setInput("");
   };
 
