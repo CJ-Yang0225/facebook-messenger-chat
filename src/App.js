@@ -6,6 +6,7 @@ import Message from "./components/Message";
 import firebase from "firebase/app";
 import db from "./firebase/config";
 import FlipMove from "react-flip-move";
+import GithubCorner from "react-github-corner";
 
 function App() {
   const [input, setInput] = useState("");
@@ -51,6 +52,10 @@ function App() {
     <div className="App">
       <div className="container">
         <div className="header">
+          <GithubCorner
+            href="https://github.com/CJ-Yang0225/facebook-messenger-chat"
+            target="_blank"
+          />
           <img
             className="app__logo"
             src="Logo_Messenger_NewBlurple-399x399-1.png"
