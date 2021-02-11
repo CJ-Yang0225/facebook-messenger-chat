@@ -2,37 +2,63 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 100vh;
+  margin: auto;
 }
 
-.App-link {
-  color: #61dafb;
+.header {
+  margin-top: 16px;
+  margin-bottom: 16px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.body {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.footer {
+  margin: 8px;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap");
+.app__title {
+  font-family: "Raleway";
+  font-size: 60px;
+  margin: 10px;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap");
+.app__subtitle {
+  font-family: "Raleway";
+  font-size: small;
+  color: gray;
+}
+
+.app__form {
+  padding: 10px 20px;
+  z-index: 1;
+  background-color: #e9e9eb;
+  border-radius: 32px;
+}
+
+.app__formControl {
+  display: flex !important;
+  flex-direction: row !important;
+}
+
+.app__input {
+  flex: 1;
+}
+
+.app__iconButton {
+  flex: 0;
+}
+
+.username {
+  font-size: 1.1rem;
+  color: #000;
+  font-family: "Roboto";
 }
