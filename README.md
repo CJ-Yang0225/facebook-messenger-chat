@@ -1,4 +1,4 @@
-Demo[facebook-messenger-chat](https://facebook-messenger-chat.web.app/)
+Demo: [facebook-messenger-chat](https://facebook-messenger-chat.web.app/)
 
 # Getting Started with Create React App
 
