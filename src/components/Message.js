@@ -16,6 +16,7 @@ const Dialog = styled.div`
     border-radius: 32px;
     width: fit-content;
     max-width: 60%;
+    text-align: left;
 
     &.message__guestCard {
       background-color: #e9e9eb;
